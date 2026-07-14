@@ -29,6 +29,8 @@ services:
   # Backend API
   # =====================================================
   backend:
+    build:
+      context: ./api-presensi
     image: api-presensi:latest
     container_name: api-presensi
     ports:
