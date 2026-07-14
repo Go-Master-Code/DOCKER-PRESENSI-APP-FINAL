@@ -1,0 +1,59 @@
+/* === TABLE STYLE === */
+.modern-table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* 🔥 font size global table */
+/* dibatasi hanya di tbody saja supaya tidak apply style yang sama ke title */
+.v-data-table tbody {
+    font-size: 14px;
+}
+
+/* zebra row */
+.modern-table tbody tr:nth-child(even) {
+    background-color: var(--table-zebra);
+}
+
+/* hover */
+.modern-table tbody tr:hover {
+    background-color: var(--table-hover);
+    transition: background-color 0.2s ease;
+}
+
+/* header */
+.modern-table thead th {
+    background-color: var(--table-header);
+    font-weight: 700 !important;
+}
+
+/* 🔥 utility spacing */
+.gap-2 {
+    gap: 8px;
+}
+
+/* =========================
+   TABLE THEME SUPPORT
+========================= */
+
+/* LIGHT MODE */
+:root {
+    --table-zebra: #fafafa;
+    --table-hover: #f3f4f6;
+    --table-header: #f8fafc;
+}
+
+/* DARK MODE */
+.v-theme--dark {
+    --table-zebra: #1e1e1e;
+    --table-hover: #2a2a2a;
+    --table-header: #181818;
+}
+
+/* transisi global agar perpindahan light/dark theme lebih smooth */
+.modern-table tbody tr,
+.modern-table thead th {
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}

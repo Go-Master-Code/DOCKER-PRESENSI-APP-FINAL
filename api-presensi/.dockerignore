@@ -1,0 +1,15 @@
+.env
+
+backups
+uploads
+
+.git
+.gitignore
+
+.vscode
+
+tmp
+dist
+bin
+
+README.md

@@ -1,0 +1,61 @@
+services:
+
+  # =====================================================
+  # MySQL Database
+  # =====================================================
+  mysql:
+    image: mysql:8.4
+    container_name: mysql-presensi
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      # password user root
+      MYSQL_ROOT_PASSWORD: root
+      # database otomatis dibuat saat pertama kali
+      MYSQL_DATABASE: presensi
+      # timezone container mysql
+      TZ: Asia/Jakarta
+
+    command:
+    #gunakan timezone Asia/Jakarta
+      - --default-time-zone=+07:00
+    
+    volumes:
+    #seluruh isi database disimpan di folder mysql-data
+      - ./mysql-data:/var/lib/mysql
+
+  # =====================================================
+  # Backend API
+  # =====================================================
+  backend:
+    image: api-presensi:latest
+    container_name: api-presensi
+    ports:
+      - "8080:8080"
+    env_file:
+      - api-presensi/.env.docker
+    volumes:
+      # lokasi penyimpanan file backup sql
+      - ./backups:/app/backups
+      # lokasi upload file
+      - ./api-presensi/uploads:/app/uploads
+    depends_on:
+      - mysql
+    restart: unless-stopped
+
+
+  # =====================================================
+  # Frontend Vue
+  # =====================================================
+  frontend:
+    build:
+      context: ./frontend-vue
+    container_name: frontend-presensi
+    ports:
+      - "5173:80"
+    environment:
+      - VITE_API_URL=http://backend:8080
+    depends_on:
+      - backend
+    restart: unless-stopped
