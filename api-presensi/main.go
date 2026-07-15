@@ -9,6 +9,7 @@ import (
 	"api-presensi/internal/routes"
 	"api-presensi/internal/service"
 	"log"
+	"strings"
 	"time"
 
 	"github.com/gin-contrib/cors"
@@ -60,9 +61,7 @@ func main() {
 	// 🔥 CORS CONFIG
 	// ===============================
 	r.Use(cors.New(cors.Config{
-		AllowOrigins: []string{
-			config.App.FrontendURL, // frontend Vue
-		},
+		AllowOrigins: strings.Split(config.App.FrontendURL, ","),
 
 		// method yang diizinkan
 		AllowMethods: []string{
