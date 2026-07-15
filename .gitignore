@@ -7,6 +7,9 @@
 # Jangan abaikan contoh env jika ada
 !**/.env.example
 
+# agar log yang dibuat sistem tidak ikut terbaca
+*.log
+
 # =========================
 # MySQL Data
 # =========================
@@ -20,7 +23,7 @@ backups/
 # =========================
 # Upload (opsional)
 # =========================
-# api-presensi/uploads/
+api-presensi/uploads/
 
 # =========================
 # Node

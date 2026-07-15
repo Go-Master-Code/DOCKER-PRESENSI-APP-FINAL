@@ -11,11 +11,11 @@ services:
       - "3306:3306"
     environment:
       # password user root
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       # database otomatis dibuat saat pertama kali
-      MYSQL_DATABASE: presensi
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
       # timezone container mysql
-      TZ: Asia/Jakarta
+      TZ: ${TZ}
 
     command:
     #gunakan timezone Asia/Jakarta
@@ -53,6 +53,7 @@ services:
   frontend:
     build:
       context: ./frontend-vue
+    image: frontend-presensi:latest
     container_name: frontend-presensi
     ports:
       - "5173:80"
