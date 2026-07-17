@@ -6,4 +6,5 @@ type LogRequestAndResponse struct {
 	Endpoint  string `json:"endpoint"`
 	IPAddress string `json:"ip_address"`
 	UserAgent string `json:"user_agent"`
+	CreatedAt string `json:"created_at"`
 }

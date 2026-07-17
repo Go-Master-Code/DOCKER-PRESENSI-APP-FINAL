@@ -36,3 +36,13 @@ func (h *HandlerLog) CreateLog(c *gin.Context) {
 
 	helper.SuccessCreateData(c, logDTO)
 }
+
+func (h *HandlerLog) GetAllLogs(c *gin.Context) {
+	logsDTO, err := h.service.GetAllLogs()
+	if err != nil {
+		helper.ErrorFetchDataFromDB(c, err)
+		return
+	}
+
+	helper.SuccessGetData(c, logsDTO)
+}

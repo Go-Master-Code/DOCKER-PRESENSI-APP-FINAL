@@ -248,15 +248,16 @@
         </v-list-group>
 
         <!-- ========================= -->
-        <!-- 🔥 BACKUP DB SINGLE CLICK -->
+        <!-- 🔥 SHOW SYSTEM LOG IF ADMIN -->
         <!-- ========================= -->
-        <!-- <v-list-item
+        <v-list-item
             v-if="isAdmin()"
-            prepend-icon="mdi-database-export"
-            title="Backup DB"
-            base-color="green"
-            @click="handleBackup"
-        /> -->
+            prepend-icon="mdi-history"
+            title="System Log"
+            to="/logs"
+            active-class="bg-primary"
+            @click="mobile && (drawer = false)"
+        />
 
         <!-- ========================= -->
         <!-- 🔥 LOGOUT -->

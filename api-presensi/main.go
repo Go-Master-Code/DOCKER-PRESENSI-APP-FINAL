@@ -128,6 +128,7 @@ func main() {
 	// dependency injection logger ke DB
 	repoLog := repository.NewRepositoryLog(database.DB)
 	serviceLog := service.NewServiceLog(repoLog)
+	handlerLog := handler.NewHandlerLog(serviceLog)
 
 	// dependency injection backup db
 	serviceBackup := service.NewBackupService()
@@ -172,6 +173,8 @@ func main() {
 		routes.RegisterRoutesRole(authorized, handlerRole)
 		// list handler user
 		routes.RegisterRoutesUser(authorized, handlerUser)
+		// list handler log (untuk ditampilkan di table untuk super admin)
+		routes.RegisterRoutesLog(authorized, handlerLog)
 	}
 
 	// run server

@@ -187,11 +187,21 @@ func ConvertToDTOUserSingle(user model.User) dto.UserResponse {
 }
 
 func ConvertToDTOLogSingle(log model.Log) dto.LogRequestAndResponse {
-	var logDTO dto.LogRequestAndResponse
-	logDTO.UserID = log.UserID
-	logDTO.Endpoint = log.Endpoint
-	logDTO.IPAddress = log.IPAddress
-	logDTO.Method = log.Method
-	logDTO.UserAgent = log.UserAgent
+	logDTO := dto.LogRequestAndResponse{
+		UserID:    log.UserID,
+		Endpoint:  log.Endpoint,
+		IPAddress: log.IPAddress,
+		Method:    log.Method,
+		UserAgent: log.UserAgent,
+		CreatedAt: log.CreatedAt.Format("02-01-2006 15:04:05"),
+	}
 	return logDTO
+}
+
+func ConvertToDTOLogPlural(logs []model.Log) []dto.LogRequestAndResponse {
+	var logsDTO []dto.LogRequestAndResponse
+	for _, l := range logs {
+		logsDTO = append(logsDTO, ConvertToDTOLogSingle(l))
+	}
+	return logsDTO
 }

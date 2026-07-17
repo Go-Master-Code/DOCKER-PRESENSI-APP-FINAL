@@ -13,8 +13,8 @@ type Presensi struct {
 	Karyawan    Karyawan       `json:"karyawan"`
 	WaktuMasuk  string         `json:"waktu_masuk"`
 	WaktuPulang string         `json:"waktu_pulang"`
-	CreatedAt   time.Time      `json:"created_at;autoCreateTime"`
-	UpdatedAt   time.Time      `json:"updated_at;autoCreateTime;autoUpdateTime"`
+	CreatedAt   time.Time      `gorm:"column:created_at;autoCreateTime"`
+	UpdatedAt   time.Time      `gorm:"column:updated_at;autoCreateTime;autoUpdateTime"`
 	DeletedAt   gorm.DeletedAt `json:"deleted_at"`
 }
 

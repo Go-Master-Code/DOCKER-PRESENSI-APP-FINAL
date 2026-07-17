@@ -8,6 +8,7 @@ import (
 
 type RepositoryLog interface {
 	CreateLog(log model.Log) (model.Log, error)
+	GetAllLogs() ([]model.Log, error)
 }
 
 // struct implementasi
@@ -24,4 +25,13 @@ func NewRepositoryLog(db *gorm.DB) RepositoryLog {
 func (r *repositoryLog) CreateLog(log model.Log) (model.Log, error) {
 	err := r.db.Create(&log).Error
 	return log, err
+}
+
+func (r *repositoryLog) GetAllLogs() ([]model.Log, error) {
+	var logs []model.Log
+	err := r.db.Find(&logs).Error
+	if err != nil {
+		return nil, err
+	}
+	return logs, nil
 }

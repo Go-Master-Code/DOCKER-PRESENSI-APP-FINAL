@@ -10,11 +10,11 @@ import IjinView from "@/views/IjinView.vue";
 import UserView from "@/views/UserView.vue";
 import PresensiScanView from "@/views/PresensiScanView.vue";
 import LoginView from "@/views/LoginView.vue";
+import LogView from "@/views/LogView.vue"
 
 // view laporan
 import LaporanPresensiPeriodeView from "@/views/LaporanPresensiPeriodeView.vue"
 import LaporanPresensiKaryawanView from "@/views/LaporanPresensiKaryawanView.vue"
-
 
 const routes = [
   {
@@ -89,6 +89,15 @@ const routes = [
         path: "laporan/karyawan",
         name: "LaporanKaryawan",
         component: LaporanPresensiKaryawanView,
+      },
+
+      // SYSTEM LOG
+      {
+        path: "logs",
+        name: "logs",
+
+        // 🔥 hasil URL → /karyawan
+        component: LogView,
       },
     ],
   },

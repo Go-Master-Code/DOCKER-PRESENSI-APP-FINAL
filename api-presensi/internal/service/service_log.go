@@ -9,6 +9,7 @@ import (
 
 type ServiceLog interface {
 	CreateLog(log dto.LogRequestAndResponse) (dto.LogRequestAndResponse, error)
+	GetAllLogs() ([]dto.LogRequestAndResponse, error)
 }
 
 // struct implementasi
@@ -40,4 +41,15 @@ func (s *serviceLog) CreateLog(log dto.LogRequestAndResponse) (dto.LogRequestAnd
 	// jika sukses, convert back to dto
 	logDTO := helper.ConvertToDTOLogSingle(newLog)
 	return logDTO, nil
+}
+
+func (s *serviceLog) GetAllLogs() ([]dto.LogRequestAndResponse, error) {
+	logs, err := s.repo.GetAllLogs()
+	if err != nil {
+		return nil, err
+	}
+
+	// convert model to dto
+	logsDTO := helper.ConvertToDTOLogPlural(logs)
+	return logsDTO, nil
 }
